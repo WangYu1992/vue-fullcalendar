@@ -1,28 +1,70 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <full-calendar locale="zh-cn" :events="events" @eventMouseover="eventMouseover" @eventClick="eventClick">
+		<template slot="fc-event-card" scope="p">
+			<!-- {{p}} -->
+            <p>{{ p.event.title }}</p>
+        </template>
+	</full-calendar>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import fullCalendar from "./components/fullCalendar.vue";
 export default {
-  name: 'app',
   components: {
-    HelloWorld
+    fullCalendar
+  },
+  data() {
+    return {
+      events: [
+        {
+          title: "event1",
+		  start: "2019-1-10",
+		},
+		{
+			title: 'event4',
+			start: '2019-1-10',
+		},
+		{
+          title: "event2",
+		  start: "2019-1-11",
+        },
+		{
+			title: 'event5',
+			start: '2019-1-10',
+		},
+		{
+			title: 'event6',
+			start: '2019-1-10'
+		},
+		{
+			title: 'event7',
+			start: '2019-1-10'
+		},
+		{
+			title: 'event8',
+			start: '2019-1-10',
+			
+		},
+        
+        {
+          title: "event3",
+          start: "2019-1-12"
+        },
+      ]
+    };
+  },
+  methods: {
+	  eventClick (event, jsEvent, pos) {
+		  console.log(event, jsEvent, pos)
+	  },
+	  eventMouseover (event, jsEvent, pos) {
+		//   console.log(event, jsEvent, pos)
+	  }
   }
-}
+};
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
